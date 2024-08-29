@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>밥 묵자</title>
+    <link rel="stylesheet" th:href="@{/css/Top_ui.css}">
+    <link rel="stylesheet" th:href="@{/css/Today_eat_detail.css}">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <div class="logo" id="logo">
+            <a href="/main" class="no-underline">
+                <p>밥 묵자</p>
+            </a>
+            <img th:src="@{/images/rice_bowl.png}" alt="밥 묵자 로고">
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a th:href="@{/main}">레시피</a></li>
+                <li><a th:href="@{/store}">스토어</a></li>
+                <li><a th:href="@{/Today}">오늘 뭐 먹지?</a></li>
+            </ul>
+        </nav>
+    </div>
+    <hr class="divider">
+    <div id="dropdown-content" class="dropdown-content">
+        <p id="user-email">bab@naver.com</p>
+        <hr>
+        <a href="#" class="edit-info">정보 수정</a>
+        <div class="dropdown-buttons">
+            <div class="combined-buttons">
+                <a th:href="@{/bookmark}" class="bookmark-btn"><img th:src="@{/images/bookmark_n.png}" alt="책갈피 아이콘"> 책갈피</a>
+                <a th:href="@{/logout}" class="logout-btn"><img th:src="@{/images/Logout.png}" alt="로그아웃 아이콘"> 로그아웃</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <section class="filter-section">
+        <div class="filter-bar">
+            <label for="ingredient">냉장고 속 재료:</label>
+            <div id="ingredient" class="filter-item" th:text="${#strings.listJoin(fridgeItems, ', ')}"></div>
+            <label for="avoid">이건 못 먹어요:</label>
+            <div id="avoid" class="filter-item" th:text="${#strings.listJoin(excludeItems, ', ')}"></div>
+        </div>
+    </section>
+
+
+
+    <section class="recipe-section">
+        <div class="recipe-header">
+            <h2>추천 레시피</h2>
+            <div class="sort-options">
+                <span class="sort-option active" id="sort-high">별점 높은 순</span>
+                <span class="sort-option" id="sort-low">별점 낮은 순</span>
+            </div>
+        </div>
+
+
+        <div class="recipe-list" th:if="${recipes}">
+
+            <div class="recipe-item" th:each="recipe : ${recipes}">
+                <input type="hidden" th:value="${recipe.id}">
+
+                <!-- 이미지 파일인 경우 -->
+                <div th:if="${#strings.endsWith(recipe.mediaUrl, '.jpg') or #strings.endsWith(recipe.mediaUrl, '.jpeg') or #strings.endsWith(recipe.mediaUrl, '.png')}">
+                    <img th:src="${recipe.mediaUrl}" th:alt="${recipe.title}" />
+                </div>
+
+                <!-- 동영상 파일인 경우 -->
+                <div th:if="${#strings.endsWith(recipe.mediaUrl, '.mp4') or #strings.endsWith(recipe.mediaUrl, '.webm')}">
+                    <video controls th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <div class="recipe-details">
+                    <h3 th:text="${recipe.title}"></h3>
+
+                    <div class="ingredient-tags">
+                        <p class="ingredient-tag" th:each="ingredient : ${recipe.ingredients.keySet()}" th:text="${ingredient}"></p>
+                    </div>
+                </div>
+
+                <div class="recipe-meta">
+                    <p class="rating">★ 9.99 / 10</p>
+                    <div class="bookmark">
+                        <img th:src="${recipe.isBookmarked ? '/images/bookmark_filled.png' : '/images/bookmark.png'}"
+                             alt="북마크 아이콘"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+
+<script th:src="@{/js/Top_ui.js}"></script>
+<script th:src="@{/js/today_eat_detail.js}"></script>
+</body>
+</html>

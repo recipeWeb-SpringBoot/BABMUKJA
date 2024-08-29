@@ -1,0 +1,161 @@
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 300px); /* 4열 그리드, 각 열의 너비를 300px로 고정 */
+    gap: 20px; /* 카드 간 간격 */
+    justify-content: center; /* 그리드를 수평 가운데 정렬 */
+    padding: 20px; /* 그리드와 화면 가장자리 사이에 여백 추가 */
+    box-sizing: border-box;
+}
+
+.product-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #e0e0e0; /* 경계선 추가 */
+    border-radius: 8px;
+    padding: 15px;
+    transition: transform 0.2s ease-in-out;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* 마우스 오버 시 살짝 떠오르는 효과 */
+    box-shadow: 0px 4px 15px rgba(91, 115, 96, 0.3); /* 마우스 오버 시 그림자 효과 */
+}
+
+.product-img {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-title {
+    font-family: 'GowunDodum-Regular', sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+    text-decoration: none;
+    line-height: 1.4;
+    height: 50px; /* 제목이 길 때 일정한 높이 유지 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #385F41;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.product-seller {
+    font-size: 14px;
+    color: #666;
+}
+
+.description p {
+    text-align: center;
+    margin: 0 auto 20px auto;
+    font-size: 20px;
+    color: #385F41;
+    padding: 0 20px;
+    line-height: 1.6;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media screen and (max-width: 1300px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 300px);
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 300px);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .product-grid {
+        grid-template-columns: repeat(1, 300px);
+    }
+    .product-grid {
+        padding: 10px;
+    }
+    .description p {
+        font-size: 18px;
+        padding: 0 10px;
+    }
+}
+
+/* 검색 기능 스타일 */
+.store-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 40px 20px 20px 20px;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.search-bar {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 50px;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.search-bar:focus {
+    border-color: #385F41;
+}
+
+.search-button {
+    background-color: #385F41;
+    border: none;
+    color: #fff;
+    padding: 12px 24px;
+    margin-left: 10px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'GowunDodum-Regular', sans-serif;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.search-button:hover {
+    background-color: #2c4831;
+}
+
+.search-result-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin: 30px 0 20px 0;
+    text-align: center;
+}

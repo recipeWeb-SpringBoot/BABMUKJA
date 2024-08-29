@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>밥 묵자</title>
+    <link rel="stylesheet" th:href="@{/css/Today_eat.css}">
+    <link rel="stylesheet" th:href="@{/css/Top_ui.css}">
+</head>
+<body>
+<!-- 고정 UI -->
+<header>
+    <div class="header-container">
+        <div class="logo" id="logo">
+            <a href="/main" class="no-underline">
+                <p>밥 묵자</p>
+            </a>
+            <img th:src="@{/images/rice_bowl.png}" alt="밥 묵자 로고">
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a th:href="@{/main}">레시피</a></li>
+                <li><a th:href="@{/store}">스토어</a></li>
+                <li class="selected"><a th:href="@{/Today}">오늘 뭐 먹지?</a></li>
+            </ul>
+        </nav>
+    </div>
+    <hr class="divider">
+    <div id="dropdown-content" class="dropdown-content">
+        <p id="user-email">bab@naver.com</p>
+        <hr>
+        <a href="#" class="edit-info">정보 수정</a>
+        <div class="dropdown-buttons">
+            <div class="combined-buttons">
+                <a th:href="@{/bookmark}" class="bookmark-btn"><img th:src="@{/images/bookmark_n.png}" alt="책갈피 아이콘"> 책갈피</a>
+                <a th:href="@{/logout}" class="logout-btn"><img th:src="@{/images/Logout.png}" alt="로그아웃 아이콘"> 로그아웃</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<div class="container">
+    <form action="/search" method="post">
+        <div class="search-section">
+            <p>오늘 뭐 먹지?</p>
+            <div class="input-group">
+                <label for="fridge-items">냉장고 속 재료</label>
+                <input type="text" id="fridge-items" placeholder="재료를 입력해주세요">
+            </div>
+            <div class="input-group">
+                <label for="exclude-items">이건 못 먹어요</label>
+                <input type="text" id="exclude-items" placeholder="재료를 입력해주세요">
+            </div>
+            <!-- 숨겨진 입력 필드 -->
+            <input type="hidden" name="fridgeTags" id="hidden-fridge-tags">
+            <input type="hidden" name="excludeTags" id="hidden-exclude-tags">
+
+            <!-- 태그들이 추가될 컨테이너 -->
+            <div class="tags fridge-tags">
+                <!-- 냉장고 속 재료 태그들이 추가될 위치 -->
+            </div>
+            <div class="tags exclude-tags">
+                <!-- 못 먹는 재료 태그들이 추가될 위치 -->
+            </div>
+            <button type="submit" class="search-button">검색</button>
+        </div>
+    </form>
+</div>
+<script th:src="@{/js/Today.js}"></script>
+<script th:src="@{/js/Top_ui.js}"></script>
+</body>
+</html>

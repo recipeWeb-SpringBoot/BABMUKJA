@@ -1,0 +1,182 @@
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'GowunDodum-Regular';
+    min-width: 1440px;
+    background: #FFFFFF;
+}
+
+.banner img{
+    width: 100%;
+}
+
+.divider {
+    margin-bottom: 0px;
+}
+
+.search {
+    padding: 10px 40px 20px 40px;
+    text-align: center;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-bar {
+    align-items: center;
+    padding: 0px;
+    gap: 4px;
+    background: #FFFFFF;
+}
+
+.search-bar input {
+    font-family: 'GowunDodum-Regular';
+    width: 300px;
+    height: 45px;
+    border: 2px solid rgba(56, 95, 65, 0.51);
+    border-radius: 28px;
+    outline: none;
+    padding: 0 20px;
+    font-size: 16px;
+}
+
+.search h1 {
+    font-size: 35px;
+}
+
+/* 인기레시피 */
+.recipes-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.carousel-button {
+    font-size: 30px;
+    font-weight: 700;
+    color: #142618;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.recipes {
+    display: flex;
+    gap: 20px;
+}
+
+.recipe {
+    width: 300px;
+    text-align: center;
+}
+
+.recipe img {
+    width: 300px;
+    height: 300px;
+}
+
+.recipe video {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.recipe-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #142618;
+    margin: 10px 0px 15px 0px;
+}
+
+/* 재료 */
+.ingredient-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.ingredient-tag {
+    background-color: #ebebeb;
+    color: #000000; /*#142618*/
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    display: inline-block;
+    white-space: nowrap;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+/* .today {
+    margin-top: 40px;
+    margin-bottom: 100px;
+}
+
+.today_eat {
+    font-family: 'GowunDodum-Regular';
+    float: right;
+    margin-right: 420px;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    color: inherit;
+    cursor: pointer;
+} */
+
+/* nav-bar ----------------------------- */
+.nav {
+    margin-top: 30px;
+    margin-bottom: 70px;
+}
+
+.nav-item {
+    text-decoration: none;
+    font-size: 20px;
+    color: gray;
+    cursor: pointer;
+}
+
+.nav-item.active {
+    font-size: 25px;
+    color: #142618;
+    /* font-weight: bold; */
+}
+
+.content {
+    text-align: center;
+}
+
+.recipe-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3칸 그리드 설정 */
+    gap: 20px; /* 이미지 사이의 간격 */
+    width: max-content; /* 콘텐츠 너비에 맞추기 */
+    margin: 0 auto; /* 중앙에 배치 */
+}
+
+.recipe {
+    text-align: center;
+}
+
+.content {
+    justify-content: center; /* category 중앙 배치 */
+}
+
+.nav-bar {
+    text-align: center; /* nav-bar를 중앙에 배치 */
+    margin-bottom: 50px; /* 하단 여백 */
+}
+
+.nav {
+    display: inline-block; /* 중앙에 배치 */
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>밥 묵자</title>
+    <link rel="stylesheet" th:href="@{/css/Top_ui.css}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo" id="logo">
+                <a href="/main" class="no-underline">
+                    <p>밥 묵자</p>
+                </a>
+                <img th:src="@{/images/rice_bowl.png}" alt="밥 묵자 로고">
+            </div>
+            <nav>
+                <ul class="menu">
+                    <li class="selected"><a th:href="@{/main}">레시피</a></li>
+                    <li><a th:href="@{/store}">스토어</a></li>
+                    <li><a th:href="@{/Today}">오늘 뭐 먹지?</a></li>
+                </ul>
+            </nav>            
+        </div>
+        <hr class="divider">
+        <div id="dropdown-content" class="dropdown-content">
+            <p id="user-email">bab@naver.com</p>
+            <hr>
+            <a href="#" class="edit-info">정보 수정</a>
+            <div class="dropdown-buttons">
+                <div class="combined-buttons">
+                    <a th:href="@{/bookmark}" class="bookmark-btn"><img th:src="@{/images/bookmark_n.png}" alt="책갈피 아이콘"> 책갈피</a>
+                    <a th:href="@{/logout}" class="logout-btn"><img th:src="@{/images/Logout.png}" alt="로그아웃 아이콘"> 로그아웃</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <script th:src="@{/js/Top_ui.js}"></script>
+</body>
+</html>

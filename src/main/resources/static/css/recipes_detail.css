@@ -1,0 +1,309 @@
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.recipe-container {
+    padding: 20px;
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.foodImg {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.foodImg p {
+    font-family: 'GowunDodum-Regular', serif;
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 25px;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.recipe-image img,
+.recipe-image video {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    display: block;
+    margin: 0 auto;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 10px;
+}
+
+.icon-left {
+    display: flex;
+    align-items: center;
+}
+
+.icon-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.share img,
+.bookmark img {
+    width: 25px;
+    height: auto;
+    cursor: pointer;
+}
+
+/* 부족한 재료 가지러 가기 */
+.material-link {
+    position: absolute;
+    font-family: 'NanumMyeongjo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 19px;
+    color: #000000;
+    text-decoration: none;
+    text-align: right;
+    right: 15px;
+    top : 25px;
+}
+
+/* Accordion */
+.details {
+    font-family: 'GowunDodum-Regular', serif;
+    font-style: normal;
+    position: relative;
+    margin-top : 50px;
+    width: 97%;
+}
+
+.detail-tap1 p,
+.detail-tap2 p {
+    font-family: 'GowunDodum-Regular', serif;
+    font-style: normal;
+    font-size: 30px;
+    margin-top: 10px;
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.detail-tap2 p {
+    margin-top: 30px;
+}
+
+.detail-tap1 {
+    margin-bottom: 2px;
+}
+
+.details .toggle-button,
+.details .content {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 8px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+}
+
+.details .content {
+    background: #F5F5F5;
+    width: 100%;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    max-height: 0;
+    opacity: 0;
+}
+
+.details .content.active {
+    max-height: 1000px; /* 컨텐츠에 따라 조정 */
+    opacity: 1;
+}
+.toggle-button {
+    margin-bottom: 3px;
+}
+
+.toggle-icon {
+    transition: transform 0.3s ease-out;
+}
+
+.toggle-icon.active {
+    transform: rotate(180deg);
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 8px;
+    width: 100%;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+}
+
+.btn img {
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+}
+
+.content {
+    padding: 10px;
+    margin-bottom: 30px;
+}
+
+.content p {
+    font-size: 15px;
+}
+
+.link {
+    position: absolute;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+
+/*footer*/
+.footer-content {
+    padding: 20px;
+    font-family: 'GowunDodum-Regular';
+    display: block;
+}
+
+.footer-recipe-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-recipe-section h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: 'GowunDodum-Regular';
+    font-size: 25px;
+    color: #385F41;
+}
+
+.footer-recipe-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer-recipe-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 170px;
+}
+
+.footer-recipe-item img,
+.footer-recipe-item video {
+    width: 160px;
+    height: 160px;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.footer-recipe-details {
+    flex-grow: 1;
+}
+
+.footer-recipe-details h3 {
+    font-size: 1.2em;
+    margin: 0 0 5px 0;
+}
+
+.footer-recipe-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.footer-bookmark img {
+    width: 25px;
+    height: auto;
+    cursor: pointer;
+}
+
+.footer-ingredient-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.footer-ingredient-tag {
+    background-color: #ebebeb;
+    color: #000000;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.footer-recipe-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.footer-recipe-meta p {
+    margin: 0;
+}
+
+.footer-rating {
+    font-weight: bold;
+    margin-top: auto;
+}
+
+.footer-sort-options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.footer-sort-option {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #B0B0B0;
+}
+
+.footer-sort-option.active {
+    font-size: 16px;
+    color: #000000;
+}
+
+.footer-recipe-header {
+    display: flex;
+    justify-content: space-between;
+}

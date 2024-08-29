@@ -1,0 +1,156 @@
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'GowunDodum-Regular';
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+}
+
+main {
+    padding: 20px;
+    font-family: 'GowunDodum-Regular';
+}
+
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    /* margin-bottom: 10px; */
+}
+
+.category {
+    margin: 0 7px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #B0B0B0;
+}
+
+.category.active {
+    font-size: 16px;
+    color: #000000;
+    font-weight: bold;
+}
+
+.recipe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-top: 60px;
+}
+.recipe-header p{
+    font-size : 30px;
+    color: #385F41;
+    font-weight: bold;
+}
+
+
+.recipe-section {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.recipe-section h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: 'GowunDodum-Regular';
+    font-size: 35px;
+    color: #385F41;
+}
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 1200px) {
+    .recipe-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .recipe-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.recipe-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.recipe-item img {
+    width: 230px;
+    height: 230px;
+    border-radius: 8px;
+    /*margin-right: 20px;*/
+}
+
+/* 동영상 파일에 대한 스타일 */
+.recipe-item video {
+    width: 230px;
+    height: 230px;
+    border-radius: 8px;
+    /*margin-right: 20px;*/
+    margin-top: 0;
+}
+
+.recipe-details {
+    margin-top: 10px;
+}
+
+.recipe-details p {
+    font-size: 1.4em;
+    margin: 0;
+    font-weight: bolder;
+}
+
+.recipe-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 10px;
+}
+
+.recipe-meta p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.bookmark img {
+    width: 25px;
+    height: auto;
+    cursor: pointer;
+}
+
+.rating {
+    font-weight: bold;
+}
+
+
