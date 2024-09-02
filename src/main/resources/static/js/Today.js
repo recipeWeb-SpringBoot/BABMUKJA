@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 먹을 수 있는 재료 입력 처리
-    fridgeInput.addEventListener('keydown', (event) => {
+    fridgeInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter' && fridgeInput.value.trim() !== '') {
             const tag = fridgeInput.value.trim();
             if (!fridgeTags.has(tag)) {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 못 먹는 재료 입력 처리
-    excludeInput.addEventListener('keydown', (event) => {
+    excludeInput.addEventListener('keypress', (event) => {
         if (event.key === 'Enter' && excludeInput.value.trim() !== '') {
             const tag = excludeInput.value.trim();
             if (!excludeTags.has(tag)) {

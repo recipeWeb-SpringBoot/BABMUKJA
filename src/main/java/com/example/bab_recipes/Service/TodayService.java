@@ -1,7 +1,7 @@
 package com.example.bab_recipes.Service;
 
 import com.example.bab_recipes.Domain.MongoRecipe;
-import com.example.bab_recipes.Repository.mongoRepository;
+import com.example.bab_recipes.Repository.MongoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 public class TodayService {
 
     @Autowired
-    mongoRepository mongoRepository;
+    MongoRepository mongoRepository;
 
     public List<MongoRecipe> searchRecipes(String[] fridgeItems, String[] excludeItems) {
         StringBuilder searchText = new StringBuilder();

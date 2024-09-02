@@ -53,4 +53,9 @@ public class User {
         return user;
 
     }
+
+    public User(Long userId) {
+        this.userId = userId;
+    }
+    public User(){}
 }
