@@ -1,7 +1,7 @@
 package com.example.bab_recipes.service;
 
 import com.example.bab_recipes.Domain.MongoRecipe;
-import com.example.bab_recipes.Repository.mongoRepository;
+import com.example.bab_recipes.Repository.MongoRepository;
 import com.example.bab_recipes.Service.TodayService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,7 @@ public class TodayServerTest {
     private TodayService todayService;
 
     @Autowired
-    private mongoRepository mongoRepository;
+    private MongoRepository mongoRepository;
 
     private long totalRecipes;
 
