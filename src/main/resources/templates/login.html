@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <p>밥 묵자</p>
+            <img th:src="@{/images/rice_bowl.png}" alt="밥 목자 로고">
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a th:href="@{/main}">레시피</a></li>
+                <li><a th:href="@{/store}">스토어</a></li>
+                <li><a th:href="@{/Today}">오늘 뭐 먹지?</a></li>
+            </ul>
+        </nav>
+    </div>
+    <hr class="divider">
+</header>
+
+<div class="login_img">
+    <div class="image">
+    </div>
+    <div class="login">
+        <h1>|  L O G I N  |</h1>
+        <a th:href="@{/oauth2/authorization/naver}">
+            <img th:src="@{/images/naver_login.png}" class="naver">
+        </a>
+    </div>
+</div>
+
+<!-- <script src="js/Top_ui.js"></script> -->
+</body>
+</html>

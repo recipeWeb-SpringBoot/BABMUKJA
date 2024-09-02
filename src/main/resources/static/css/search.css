@@ -1,0 +1,177 @@
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: 'GowunDodum-Regular';
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+}
+
+main {
+    padding: 20px;
+    font-family: 'GowunDodum-Regular';
+}
+
+.filter-section {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top : 30px;
+    margin-bottom: 10px;
+    border: 1.5px solid #385F41;
+    border-radius: 30px;
+    z-index: 1;
+}
+
+.search-input {
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+}
+
+.search-button {
+    border:none;
+    border-left: none;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.search-button img {
+    width: 30px;
+    height: 30px;
+}
+
+.recipe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.sort-options {
+    display: flex;
+    align-items: center;
+}
+
+.sort-option {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #B0B0B0;
+}
+
+.sort-option.active {
+    font-size: 16px;
+    color: #000000;
+}
+
+
+
+.recipe-section {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.recipe-section h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-family: 'GowunDodum-Regular';
+    font-size: 35px;
+    color: #385F41;
+}
+
+.recipe-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.recipe-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: 170px;
+}
+
+.recipe-item img {
+    width: 160px;
+    height: 160px;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.recipe-details {
+    flex-grow: 1;
+}
+
+.recipe-details h3 {
+    font-size: 1.2em;
+    margin: 0 0 5px 0;
+}
+
+.recipe-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.bookmark img {
+    width: 25px;
+    height: auto;
+    cursor: pointer;
+}
+
+.ingredient-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ingredient-tag {
+    background-color: #ebebeb;
+    color: #000000; /*#142618*/
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.9em;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.recipe-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.recipe-meta p {
+    margin: 0;
+}
+
+.rating {
+    font-weight: bold;
+    margin-top: auto;
+}
+

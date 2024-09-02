@@ -1,0 +1,143 @@
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.container {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    background: white;
+    border: 3px solid #385F41;
+    border-radius: 41px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+    padding: 20px;
+}
+.search-section p{
+    font-family: 'GowunDodum-Regular';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 1.9rem; /* 반응형 폰트 크기 */
+    line-height: 3rem;
+    color: #385F41;
+    margin-bottom : 15px;
+    margin-top : 15px;
+}
+
+
+.input-group {
+    display: block;
+    flex-direction: column;
+    align-items: flex-start; /* 왼쪽 정렬 */
+    margin-top: 45px;
+    margin-bottom: 20px;
+    width: 100%; /* 전체 너비 */
+}
+
+.input-group label {
+    font-size: 1.25rem;
+    color: #385F41;
+    margin-bottom: 10px;
+}
+
+.input-group input {
+    width: calc(80% - 20px); /* 여백을 고려하여 조정 */
+    padding: 20px 15px;
+    font-size: 1rem;
+    border: 1px solid #B2B2B2;
+    border-radius: 30px;
+}
+
+.input-group input:focus {
+    border-color: #385F41; /* 포커스 시 테두리 색 변경 */
+    outline: none; 
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    /* background: #F5F5F5; */
+    /* border: 1px solid #B2B2B2; */
+    border-radius: 20px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.fridge-tags {
+    color: #000000; /* 다른 글씨 색상 */
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+
+}
+
+.fridge-tags .tag {
+    background-color: #89be95;
+    color: #000000; /* 다른 글씨 색상 */
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+
+}
+
+
+.exclude-tags .tag {
+    background-color: rgb(255, 192, 192);
+    color: #000000; /* 다른 글씨 색상 */
+    border-radius: 20px;
+    border: 1px solid #ffffff;
+
+}
+
+.close {
+    margin-left: 5px;
+    cursor: pointer;
+    color: #FF0000;
+}
+
+.search-button {
+    padding: 10px 90px;
+    background: #385F41;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.25rem;
+    color: white;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 915px) {
+    .container {
+        min-width: 100%;
+    }
+
+    .search-section p {
+        font-size: 1.5rem;
+    }
+
+    .input-group {
+        margin-bottom: 50px;
+    }
+
+    .input-group input {
+        width: calc(100% - 20px);
+    }
+
+    .search-button {
+        padding: 10px 50px;
+    }
+}

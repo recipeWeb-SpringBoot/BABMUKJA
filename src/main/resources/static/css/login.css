@@ -1,0 +1,156 @@
+/* 기존 CSS 파일 내용 */
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'GowunDodum-Regular';
+    margin: 0;
+    padding: 0;
+    background: #FFFFFF;
+}
+
+.header-container {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; 왼쪽 정렬 */
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-left : 129px;
+    /* margin-bottom: 3px; 아래 요소와 간격 조정 */
+}
+
+.logo p {
+    font-family: 'GowunDodum-Regular';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 1.7rem; /* 반응형 폰트 크기 */
+    line-height: 2rem;
+    color: #385F41;
+    margin : 0;
+    margin-top : 17px;
+}
+
+.logo img {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 71px; /* 오른쪽 끝에서 71px 떨어지도록 */
+    top: 25px; /* 텍스트와 일직선상에 두기 위해 조정 */
+    object-fit: cover;
+}
+
+.menu {
+    margin-left : 129px;
+}
+
+nav {
+    margin-top: 10px;
+    /* margin-left : 15px; */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 52px;
+    flex-wrap: wrap;
+}
+
+nav ul li a {
+    font-family: 'GowunDodum-Regular';;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.1rem; /* 반응형 폰트 크기 */
+    line-height: 2.375rem;
+    color: #757575;
+    text-decoration: none;
+}
+
+/* 마우스가 올라갔을 때 텍스트 색상을 검정색으로 변경 */
+nav ul li a:hover {
+    color: #000000;
+}
+
+/* li 요소가 선택된 상태일 때 아래에 굵은 밑줄 추가 */
+nav ul li.selected a {
+    /* color: #000000;
+    border-bottom: 3px solid #142618; */
+    padding-bottom: 11px; /* 밑줄과 텍스트 사이의 간격 조절 */
+}
+
+/* 선택되지 않은 항목의 밑줄은 투명하게 처리 */
+nav ul li a {
+    border-bottom: 3px solid transparent;
+    padding-bottom: 11px; /* 밑줄과 텍스트 사이의 간격 조절 */
+}
+
+.divider {
+    width: 100%;
+    border: 1px solid #B2B2B2;
+    margin-top: 0.3rem;
+    margin-bottom: 0px;
+    box-sizing: border-box;
+}
+
+
+/* 로그인 */
+.login_img {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* height: 100vh; */
+    overflow: hidden; /* Prevent horizontal scrolling */
+}
+
+.image {
+    flex: 1;
+    background-image: url('/images/login.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Adjust this value as needed */
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.naver {
+    width: 300px;
+    height: 70px;
+}
+
+.login {
+    width: 50%;
+    float: right;
+    display: flex; /* Flexbox 사용 */
+    flex-direction: column;
+
+    align-items: center; /* 수평 정렬 */
+}
+
+.login h1 {
+    text-align: center;
+    font-size: 40px;
+    font-family: 'GowunDodum-Regular';
+    margin-bottom: 70px;
+}
+
+/* .image img {
+    width: 100%;
+    height: 80%;
+} */
