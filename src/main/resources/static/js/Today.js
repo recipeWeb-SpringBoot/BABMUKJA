@@ -7,17 +7,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const hiddenExcludeTags = document.getElementById('hidden-exclude-tags');
     const searchButton = document.querySelector('.search-button');
 
-    const fridgeTags = new Set(); // 먹을 수 있는 재료 태그 저장
-    const excludeTags = new Set(); // 못 먹는 재료 태그 저장
+    const fridgeTags = new Set();
+    const excludeTags = new Set();
 
-    // 숨겨진 필드를 업데이트하는 함수
     function updateHiddenFields() {
         hiddenFridgeTags.value = Array.from(fridgeTags).join(',');
         hiddenExcludeTags.value = Array.from(excludeTags).join(',');
     }
 
-    // 태그 요소를 생성하는 함수
     function createTagElement(tag, container, tagsSet, hiddenFieldUpdater) {
+        if (tag.trim() === '') {
+            alert('빈 태그는 추가할 수 없습니다.');
+            return false;
+        }
+
+        if (tagsSet.has(tag)) {
+            alert('이미 추가된 태그입니다.');
+            return false;
+        }
+
         const tagElement = document.createElement('div');
         tagElement.classList.add('tag');
         tagElement.textContent = tag;
@@ -26,47 +34,50 @@ document.addEventListener('DOMContentLoaded', () => {
         closeElement.classList.add('close');
         closeElement.textContent = '×';
 
-        // 태그 삭제 이벤트
         closeElement.addEventListener('click', () => {
             container.removeChild(tagElement);
             tagsSet.delete(tag);
-            hiddenFieldUpdater();  // 태그 삭제 시 숨겨진 필드 업데이트
+            hiddenFieldUpdater();
         });
 
         tagElement.appendChild(closeElement);
         container.appendChild(tagElement);
 
-        hiddenFieldUpdater(); // 태그 추가 시 숨겨진 필드 업데이트
+        tagsSet.add(tag);
+        hiddenFieldUpdater();
+        return true;
     }
 
-    // 먹을 수 있는 재료 입력 처리
+    function handleTagInput(inputElement, container, tagsSet) {
+        if (inputElement.value.trim() !== '') {
+            const tag = inputElement.value.trim();
+            if (createTagElement(tag, container, tagsSet, updateHiddenFields)) {
+                inputElement.value = '';
+            }
+        } else {
+            alert('태그를 입력해주세요.');
+        }
+    }
+
     fridgeInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter' && fridgeInput.value.trim() !== '') {
-            const tag = fridgeInput.value.trim();
-            if (!fridgeTags.has(tag)) {
-                fridgeTags.add(tag);
-                createTagElement(tag, fridgeTagsContainer, fridgeTags, updateHiddenFields);
-            }
-            fridgeInput.value = '';
-            event.preventDefault();  // 폼이 제출되지 않도록 방지
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleTagInput(fridgeInput, fridgeTagsContainer, fridgeTags);
         }
     });
 
-    // 못 먹는 재료 입력 처리
     excludeInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter' && excludeInput.value.trim() !== '') {
-            const tag = excludeInput.value.trim();
-            if (!excludeTags.has(tag)) {
-                excludeTags.add(tag);
-                createTagElement(tag, excludeTagsContainer, excludeTags, updateHiddenFields);
-            }
-            excludeInput.value = '';
-            event.preventDefault();  // 폼이 제출되지 않도록 방지
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleTagInput(excludeInput, excludeTagsContainer, excludeTags);
         }
     });
 
-    // 검색 버튼 클릭 시 숨겨진 필드 업데이트
     searchButton.addEventListener('click', (event) => {
-        updateHiddenFields();  // 폼 제출 전에 숨겨진 필드를 업데이트
+        updateHiddenFields();
+        if (fridgeTags.size === 0 && excludeTags.size === 0) {
+            alert('최소한 하나의 태그를 추가해주세요.');
+            event.preventDefault();
+        }
     });
 });
