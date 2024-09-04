@@ -27,11 +27,6 @@ public class BookmarkController {
 
     @Autowired
     private BookMarkService bookMarkService;
-    @Autowired
-    private UserService userService;
-
-    @Autowired
-    private TodayService todayService;
 
 
     //북마크 생성 / 제거
@@ -108,52 +103,30 @@ public class BookmarkController {
     public String bookmark(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
 
-        try{
-            if(user == null) {
-                return "redirect:/login";
-            }else{
-                // MySQL 데이터베이스에서 북마크 설정된 레시피 가져오기
-                List<Bookmark> userBookmarkRecipe = bookMarkService.getUserBookmarkRecipe(user.getUserId());
-
-                // 가져온 북마크에서 레시피 아이디 추출
-                List<String> recipeIds = userBookmarkRecipe.stream()
-                        .map(Bookmark::getRecipeId)
-                        .toList();
-
-                // 추출한 레시피 아이디로 MongoDB 검색
-                List<MongoRecipe> searchRecipe = bookMarkService.searchAllRecipe(recipeIds);
-
-                // MongoRecipe 리스트를 Map으로 변환 (recipeId를 키로 사용)
-                Map<String, MongoRecipe> recipeMap = searchRecipe.stream()
-                        .collect(Collectors.toMap(MongoRecipe::getId, recipe -> recipe));
-
-                // RecipeDTO 리스트 생성
-                List<RecipeDTO> recipeDTOList = userBookmarkRecipe.stream()
-                        .map(bookmark -> {
-                            MongoRecipe mongoRecipe = recipeMap.get(bookmark.getRecipeId());
-                            if (mongoRecipe != null) {
-                                return new RecipeDTO(
-                                        mongoRecipe.getId(),
-                                        mongoRecipe.getTitle(),
-                                        mongoRecipe.getIngredients(),
-                                        mongoRecipe.getMediaUrl(),
-                                        bookmark.getIsBookmark() == 1
-                                );
-                            }
-                            return null;
-                        })
-                        .filter(Objects::nonNull)
-                        .collect(Collectors.toList());
-
-                // 이후 DTO 리스트를 뷰로 전달
-                model.addAttribute("recipes", recipeDTOList);
-
-                return "bookmark";
-            }
-        }catch (Exception e) {
-            e.printStackTrace();
+        if (user == null) {
             return "redirect:/login";
         }
 
+        try {
+            List<MongoRecipe> userBookmarkedRecipes = bookMarkService.searchAllRecipeForUserBookmark(user.getUserId());
+
+            // RecipeDTO 리스트 생성
+            List<RecipeDTO> recipeDTOList = userBookmarkedRecipes.stream()
+                    .map(mongoRecipe -> new RecipeDTO(
+                            mongoRecipe.getId(),
+                            mongoRecipe.getTitle(),
+                            mongoRecipe.getIngredients(),
+                            mongoRecipe.getMediaUrl(),
+                            true  // 북마크된 레시피만 가져오므로 항상 true
+                    ))
+                    .collect(Collectors.toList());
+
+            model.addAttribute("recipes", recipeDTOList);
+
+            return "bookmark";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/login";
+        }
     }
 }
