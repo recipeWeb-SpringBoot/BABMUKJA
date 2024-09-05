@@ -20,9 +20,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable() // 개발 중에는 CSRF 비활성화
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/webjars/**", "/login").permitAll() // /login 경로에 대한 접근 허용
-                        .requestMatchers("/board/**").hasRole("USER")
-                        .anyRequest().authenticated()
+                        .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/webjars/**", "/login").permitAll() // 로그인 경로 및 리소스 경로에 대한 접근 허용
+                        .requestMatchers("/main", "/mainSearch", "/recipes", "/Recipe/**", "/recipes/{categoryName}").permitAll() // 게스트도 접근 가능하도록 설정
+                        .requestMatchers("/board/**").hasRole("USER") // /board 경로는 USER 권한 필요
+                        .anyRequest().authenticated() // 그 외의 요청은 인증 필요
                 )
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login")

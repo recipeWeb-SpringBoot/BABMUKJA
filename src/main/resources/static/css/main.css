@@ -19,6 +19,24 @@ body {
     margin-bottom: 0px;
 }
 
+.login_btn {
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: absolute;
+    width: 100px;
+    height: 70px;
+    right: 71px;
+    top: 25px;
+    object-fit: cover;
+    cursor: pointer;
+    text-decoration-line: none;
+    color: #142618;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .search {
     padding: 10px 40px 20px 40px;
     text-align: center;

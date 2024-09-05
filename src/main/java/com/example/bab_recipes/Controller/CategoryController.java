@@ -2,6 +2,7 @@ package com.example.bab_recipes.Controller;
 
 import com.example.bab_recipes.DTO.RecipeDTO;
 import com.example.bab_recipes.Domain.MongoRecipe;
+import com.example.bab_recipes.Domain.User;
 import com.example.bab_recipes.Repository.MainRepository;
 import com.example.bab_recipes.Service.CategoryService;
 import jakarta.servlet.http.HttpSession;
@@ -50,7 +51,7 @@ public class CategoryController {
     }
 
     @GetMapping("/recipes/{categoryName}")
-    public String getRecipesByCategory(@PathVariable("categoryName") String categoryName, Model model) {
+    public String getRecipesByCategory(@PathVariable("categoryName") String categoryName, Model model, HttpSession session) {
         // 특정 카테고리의 레시피 가져오기
         List<MongoRecipe> recipesInCategory = categoryService.getAllRecipesGroupedByCategory().get(categoryName);
 
@@ -71,6 +72,16 @@ public class CategoryController {
 
         model.addAttribute("categories", recipeDTOs);
 
+        // userEmail
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
+
         return "main"; // 특정 카테고리의 레시피를 출력할 페이지
     }
 
@@ -88,6 +99,16 @@ public class CategoryController {
             );
             model.addAttribute("category", recipeDTO);
             return "Recipes_detail";
+        }
+
+        // userEmail
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
         }
         return "redirect:/main";
     }

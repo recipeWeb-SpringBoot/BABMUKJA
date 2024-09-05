@@ -14,7 +14,14 @@
             <a href="/main" class="no-underline">
                 <p>밥 묵자</p>
             </a>
-            <img th:src="@{/images/rice_bowl.png}" alt="밥 묵자 로고">
+            <div th:if="${session.user != null}">
+                <!-- login -->
+                <img th:src="@{/images/rice_bowl.png}" alt="밥 묵자 로고">
+            </div>
+            <div th:if="${session.user == null}">
+                <!-- guest -->
+                <a href="/login" class="login_btn">로그인</a>
+            </div>
         </div>
         <nav>
             <ul class="menu">
@@ -39,7 +46,7 @@
 </header>
 
 <div class="banner">
-    <img src="/images/banner.png">
+    <a th:href="@{/Popular}"><img src="/images/banner.png"></a>
 </div>
 
 <div class="search">
@@ -73,7 +80,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <div class="nav-bar">
@@ -85,7 +91,7 @@
         <a class="nav-item" th:href="@{/recipes/분식}">분식</a> |
         <a class="nav-item" th:href="@{/recipes/퓨전}">퓨전</a> |
         <a class="nav-item" th:href="@{/recipes/밑반찬}">밑반찬</a> |
-        <a class="nav-item" th:href="@{/recipes/야식}">야식</a> |
+        <!--        <a class="nav-item" th:href="@{/recipes/야식}">야식</a> |-->
         <a class="nav-item" th:href="@{/recipes/다이어트}">다이어트</a> |
         <a class="nav-item" th:href="@{/recipes/베이킹}">베이킹</a> |
         <a class="nav-item" th:href="@{/recipes/채식}">채식</a>
@@ -108,6 +114,7 @@
                         Your browser does not support the video tag.
                     </video>
                 </div>
+
                 <h3 th:text="${category.title}"></h3>
                 <!-- 각 레시피의 재료를 출력 -->
                 <div class="ingredient-tags">

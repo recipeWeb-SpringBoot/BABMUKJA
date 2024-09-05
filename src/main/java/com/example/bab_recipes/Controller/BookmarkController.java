@@ -31,7 +31,7 @@ public class BookmarkController {
 
     //북마크 생성 / 제거
     @PostMapping("/addBookmark")
-    public ResponseEntity<Map<String, Object>> addBookmark(@RequestBody Bookmark bookmark, HttpSession session) {
+    public ResponseEntity<Map<String, Object>> addBookmark(@RequestBody Bookmark bookmark, Model model,HttpSession session) {
         String recipeId = bookmark.getRecipeId();
         int isBookMark = bookmark.getIsBookmark();
         User user = (User) session.getAttribute("user");
@@ -41,6 +41,12 @@ public class BookmarkController {
 
         Map<String, Object> response = new HashMap<>();  // 변경: Map<String, String> -> Map<String, Object>
 
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
         try {
             Bookmark savedBookmark = bookMarkService.addBookmark(newMark);
             if (savedBookmark != null) {
@@ -102,6 +108,13 @@ public class BookmarkController {
     @GetMapping("/bookmark")
     public String bookmark(HttpSession session, Model model) {
         User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
 
         if (user == null) {
             return "redirect:/login";
