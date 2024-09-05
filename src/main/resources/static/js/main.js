@@ -33,13 +33,50 @@ document.querySelector('.search-bar input').addEventListener('keypress', functio
 });
 
 // category nav
+// document.addEventListener('DOMContentLoaded', function() {
+//     const navItems = document.querySelectorAll('.nav-item');
+//
+//     // 현재 URL에 따라 활성화된 카테고리를 설정하거나, 기본적으로 '한식' 선택
+//     const currentPath = window.location.pathname;
+//     let activeSet = false;
+//
+//     navItems.forEach(item => {
+//         const hrefPath = new URL(item.href).pathname;
+//         if (hrefPath === currentPath) {
+//             item.classList.add('active');
+//             activeSet = true;
+//         }
+//     });
+//
+//     // 만약 현재 URL과 일치하는 항목이 없다면, 기본적으로 '한식'을 활성화
+//     if (!activeSet) {
+//         const defaultItem = document.getElementById('default-category');
+//         if (defaultItem) {
+//             defaultItem.classList.add('active');
+//         }
+//     }
+//
+//     // 클릭 이벤트 설정 (클릭 시 active 클래스 업데이트)
+//     navItems.forEach(item => {
+//         item.addEventListener('click', function() {
+//             navItems.forEach(nav => nav.classList.remove('active'));
+//             this.classList.add('active');
+//         });
+//     });
+// });
+
 document.addEventListener('DOMContentLoaded', function() {
     const navItems = document.querySelectorAll('.nav-item');
-
-    // 현재 URL에 따라 활성화된 카테고리를 설정하거나, 기본적으로 '한식' 선택
     const currentPath = window.location.pathname;
     let activeSet = false;
 
+    // 현재 경로가 "/" 또는 "/main"이라면 기본적으로 한식으로 리다이렉트
+    if (currentPath === "/" || currentPath === "/main") {
+        window.location.href = "/recipes/한식";
+        return; // 한식 경로로 리다이렉트 후 아래 코드를 실행하지 않음
+    }
+
+    // 현재 URL에 따라 활성화된 카테고리를 설정
     navItems.forEach(item => {
         const hrefPath = new URL(item.href).pathname;
         if (hrefPath === currentPath) {
@@ -47,14 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
             activeSet = true;
         }
     });
-
-    // 만약 현재 URL과 일치하는 항목이 없다면, 기본적으로 '한식'을 활성화
-    if (!activeSet) {
-        const defaultItem = document.getElementById('default-category');
-        if (defaultItem) {
-            defaultItem.classList.add('active');
-        }
-    }
 
     // 클릭 이벤트 설정 (클릭 시 active 클래스 업데이트)
     navItems.forEach(item => {

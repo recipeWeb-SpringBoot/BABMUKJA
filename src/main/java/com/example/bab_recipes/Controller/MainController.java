@@ -1,8 +1,8 @@
 package com.example.bab_recipes.Controller;
 
-import com.example.bab_recipes.Domain.Bookmark;
-import com.example.bab_recipes.Repository.MainRepository;
 import jakarta.servlet.http.HttpSession;
+import com.example.bab_recipes.Domain.User;
+import com.example.bab_recipes.Repository.MainRepository;
 import org.springframework.ui.Model;
 import com.example.bab_recipes.DTO.RecipeDTO;
 import com.example.bab_recipes.Domain.MongoRecipe;
@@ -18,18 +18,29 @@ import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
+
     @Autowired
     private MainService mainService;
     @Autowired
     private MainRepository mainRepository;
 
+
     @GetMapping("/")
-    public String index() {
-        return "/main";
+    public String index(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            System.out.println("userEmail: " + user.getUserEmail());
+            model.addAttribute("email", user.getUserEmail());
+        } else {
+            System.out.println("로그인 실패");
+        }
+
+        return "main";
     }
 
-    @GetMapping("/pp")
-    public String pp() {
+    @GetMapping("/popular")
+    public String popular() {
         return "popular";
     }
 
@@ -72,6 +83,17 @@ public class MainController {
             model.addAttribute("recipe", recipeDTO);
             return "Recipes_detail";
         }
+
+        // userEmail
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
+
         return "redirect:/main";
     }
 }

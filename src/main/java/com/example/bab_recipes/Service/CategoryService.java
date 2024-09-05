@@ -20,7 +20,7 @@ public class CategoryService {
     public Map<String, List<MongoRecipe>> getAllRecipesGroupedByCategory() {
         Map<String, List<MongoRecipe>> categorizedRecipes = new HashMap<>();
 
-        String[] categories = {"베이킹", "중식", "다이어트", "분식", "퓨전", "일식", "한식", "야식", "밑반찬", "채식", "양식"};
+        String[] categories = {"베이킹", "중식", "다이어트", "분식", "퓨전", "일식", "한식", "밑반찬", "채식", "양식"};
 
         for (String category : categories) {
             List<MongoRecipe> recipes = categoryRepository.findByCategory(category);
