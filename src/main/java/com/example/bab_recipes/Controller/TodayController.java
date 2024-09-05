@@ -136,8 +136,11 @@ public class TodayController {
             model.addAttribute("recipeList", recipeList);
             session.removeAttribute("recipe");
             session.removeAttribute("bookmark");
+
+            return "Recipes_detail";
         }
 
-        return "Recipes_detail";
+        return "redirect:/Today_eat_detail";
+
     }
 }
