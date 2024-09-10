@@ -2,6 +2,7 @@ package com.example.bab_recipes.Service;
 
 import com.example.bab_recipes.Domain.Bookmark;
 import com.example.bab_recipes.Domain.MongoRecipe;
+import com.example.bab_recipes.Domain.User;
 import com.example.bab_recipes.Repository.BookmarkRepository;
 import com.example.bab_recipes.Repository.MongoRepository;
 import jakarta.transaction.Transactional;
@@ -22,13 +23,13 @@ public class BookMarkService {
     private MongoRepository mongoRepository;
 
     //단일 북마크설정여부
-    public Optional<Bookmark> statusMark(String id) {
-        return bookmarkRepository.findByRecipeId(id);
+    public Optional<Bookmark> statusMark(String id, Long userId) {
+        return bookmarkRepository.findByRecipeIdAndUserId(id, userId);
     }
 
     //리스트 북마크 설정여부
-    public List<Bookmark> getAllBookmarks(List<String> recipeIds) {
-        return bookmarkRepository.findBookmarksByRecipeIds(recipeIds);
+    public List<Bookmark> getAllBookmarks(List<String> recipeIds, User user) {
+        return bookmarkRepository.findBookmarksByRecipeIdsAndUserId(recipeIds, user);
     }
 
     //북마크 추가

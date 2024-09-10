@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: .
+      dockerfile : Dockerfile
+    ports :
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL : jdbc:mysql://mysql:3306/recipe
+      SPRING_DATASOURCE_USERNAME : ks
+      SPRING_DATASOURCE_PASSWORD : "@@1234aa"
+      SPRING_DATA_MONGODB_URL : mongodb://mongodb:27017/bab_Recipes
+    depends_on:
+      - mysql
+      - mongodb
+
+  mysql:
+    image : mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD : "@@995484kim"
+      MYSQL_DATABASE : recipe
+      MYSQL_USER : ks
+      MYSQL_PASSWORD : "@@1234aa"
+    ports:
+      - "3307:3306"
+
+
+  mongodb:
+    image : mongo:5.0
+    ports :
+      - "27018:27017"

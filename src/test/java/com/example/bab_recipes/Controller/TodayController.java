@@ -3,6 +3,7 @@ package com.example.bab_recipes.Controller;
 import com.example.bab_recipes.DTO.RecipeDTO;
 import com.example.bab_recipes.Domain.Bookmark;
 import com.example.bab_recipes.Domain.MongoRecipe;
+import com.example.bab_recipes.Domain.User;
 import com.example.bab_recipes.Service.BookMarkService;
 import com.example.bab_recipes.Service.TodayService;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,14 +53,14 @@ class TodayController {
         List<MongoRecipe> recipes = (List<MongoRecipe>) session.getAttribute("recipes");
         assertNotNull(recipes, "레시피 목록 null X");
         assertFalse(recipes.isEmpty(), "레시피 목록 null X");
-
+        User user = (User) session.getAttribute("user");
         // MongoDB에서 레시피 ID 목록 추출
         List<String> recipeIds = recipes.stream()
                 .map(MongoRecipe::getId)
                 .collect(Collectors.toList());
 
         // MySQL에서 북마크 정보 조회
-        List<Bookmark> bookmarks = markService.getAllBookmarks(recipeIds);
+        List<Bookmark> bookmarks = markService.getAllBookmarks(recipeIds, user);
 
         // 북마크된 레시피 ID 목록 생성
         List<String> bookmarkedRecipeIds = bookmarks.stream()
