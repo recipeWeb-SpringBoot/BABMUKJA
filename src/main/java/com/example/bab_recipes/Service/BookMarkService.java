@@ -35,12 +35,10 @@ public class BookMarkService {
     //북마크 추가
     public Bookmark addBookmark(Bookmark bookmark) {
         String recipeId = bookmark.getRecipeId();
-        Optional<Bookmark> byRecipeId = bookmarkRepository.findByRecipeId(recipeId);
-        if (byRecipeId.isPresent()) {
-            return bookmark;
-        }else{
-            return bookmarkRepository.save(bookmark);
-        }
+        User user = bookmark.getUser();
+
+        Optional<Bookmark> addmark = bookmarkRepository.findByRecipeIdAndUserId(recipeId,user.getUserId());
+        return addmark.orElseGet(() -> bookmarkRepository.save(bookmark));
 
     }
 
