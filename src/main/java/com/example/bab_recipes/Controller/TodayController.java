@@ -130,8 +130,6 @@ public class TodayController {
         model.addAttribute("recipes", recipeDto);
         session.setAttribute("bookmarkedRecipe", recipeDto);
 
-        User user = (User) session.getAttribute("user");
-
         if (user != null) {
             model.addAttribute("email", user.getUserEmail());
             System.out.println("userEmail: " + user.getUserEmail());
@@ -149,8 +147,6 @@ public class TodayController {
     @GetMapping("/recipe/detail/{recipeId}")
     public String recipeDetail(@PathVariable("recipeId") Optional<String> recipeId, HttpSession session, Model model) {
         String id = recipeId.orElse("");
-        User user = (User) session.getAttribute("user");
-
         User user = (User) session.getAttribute("user");
 
         if (user != null) {
