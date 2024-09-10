@@ -14,6 +14,7 @@ public class Bookmark {
     private Long bookmarkId;
 
     //fetch = FetchType -> 지연로딩
+    @Getter
     @ManyToOne(fetch = FetchType.LAZY) //Many = bookmark, one = user ->한명의 유저가 많은 북마크를 남길수 있다.
     @JoinColumn(name="userId") //foreign key(userId) reference User (UserId)
     private User user;
@@ -21,7 +22,7 @@ public class Bookmark {
     //mongo
     @Getter
     @Setter
-    @Column(name = "recipeId", unique = true)
+    @Column(name = "recipeId", unique = false)
     private String recipeId;
 
     @Getter
