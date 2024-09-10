@@ -141,3 +141,34 @@
         padding: 10px 50px;
     }
 }
+
+/* footer*/
+.footer {
+    background-color: #f2f2f2;
+    height: 180px;
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.footer-content {
+    text-align: left;
+    font-family: 'GowunDodum-Regular';
+}
+
+.footer-links {
+    text-align: right;
+    font-family: 'GowunDodum-Regular';
+}
+
+.footer a {
+    color: #333;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}

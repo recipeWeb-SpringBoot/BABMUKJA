@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Table(name = "Bookmark")
+//@Table(name = "Bookmark")
+@Table(name = "Bookmark", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"recipeId", "userId"})
+})
 @Entity
 public class Bookmark {
 
@@ -21,7 +24,7 @@ public class Bookmark {
     //mongo
     @Getter
     @Setter
-    @Column(name = "recipeId", unique = true)
+    @Column(name = "recipeId", unique = false) //, unique = true
     private String recipeId;
 
     @Getter
