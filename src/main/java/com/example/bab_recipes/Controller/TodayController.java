@@ -98,6 +98,7 @@ public class TodayController {
         List<String> fridgeItems = (List<String>) session.getAttribute("fridgeItems");
         List<String> excludeItems = (List<String>) session.getAttribute("excludedItems");
         List<MongoRecipe> recipes = (List<MongoRecipe>) session.getAttribute("recipes");
+        User user = (User) session.getAttribute("user");
 
         // MongoDB에서 레시피 ID 목록 추출
         List<String> recipeIds = recipes.stream()
@@ -105,7 +106,7 @@ public class TodayController {
                 .collect(Collectors.toList());
 
         // MySQL에서 북마크 정보 조회
-        List<Bookmark> bookmarks = markService.getAllBookmarks(recipeIds);
+        List<Bookmark> bookmarks = markService.getAllBookmarks(recipeIds, user);
 
         // 북마크된 레시피 ID 목록 생성
         Set<String> bookmarkedRecipeIds = bookmarks.stream()
@@ -148,6 +149,7 @@ public class TodayController {
     @GetMapping("/recipe/detail/{recipeId}")
     public String recipeDetail(@PathVariable("recipeId") Optional<String> recipeId, HttpSession session, Model model) {
         String id = recipeId.orElse("");
+        User user = (User) session.getAttribute("user");
 
         User user = (User) session.getAttribute("user");
 
@@ -163,7 +165,7 @@ public class TodayController {
         }
 
         Optional<MongoRecipe> recipeOptional = todayService.detailRecipe(id);
-        Optional<Bookmark> bookmarkOptional = markService.statusMark(id);
+        Optional<Bookmark> bookmarkOptional = markService.statusMark(id, user.getUserId());
         if (recipeOptional.isPresent()) {
             MongoRecipe recipe = recipeOptional.get();
             Bookmark bookmark = bookmarkOptional.orElse(new Bookmark(0)); // 북마크가 없을 때 기본값 설정
@@ -201,8 +203,11 @@ public class TodayController {
             model.addAttribute("recipeList", recipeList);
             session.removeAttribute("recipe");
             session.removeAttribute("bookmark");
+
+            return "Recipes_detail";
         }
 
-        return "Recipes_detail";
+        return "redirect:/Today_eat_detail";
+
     }
 }
