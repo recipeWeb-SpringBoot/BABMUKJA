@@ -70,11 +70,11 @@ public class BookmarkServiceUnitTest {
         //Given
         String recipeId = "recipe1";
         Bookmark bookmark = new Bookmark(recipeId);
-
+        Long userId = 1L;
         when(bookmarkRepository.findByRecipeId(recipeId)).thenReturn(Optional.of(bookmark));
 
         //When
-        Optional<Bookmark> result = bookMarkService.statusMark(recipeId);
+        Optional<Bookmark> result = bookMarkService.statusMark(recipeId, userId);
 
         //Then
         assertEquals(Optional.of(bookmark), result);
@@ -84,10 +84,11 @@ public class BookmarkServiceUnitTest {
     public void testStatusMark_WhenBookmarkNotExists(){
         //Given
         String recipeId = "recipe1";
+        Long userId = 1L;
         when(bookmarkRepository.findByRecipeId(recipeId)).thenReturn(Optional.empty());
 
         //When
-        Optional<Bookmark> result = bookMarkService.statusMark(recipeId);
+        Optional<Bookmark> result = bookMarkService.statusMark(recipeId, userId);
 
         //Then
         assertEquals(Optional.empty(), result);
@@ -99,13 +100,13 @@ public class BookmarkServiceUnitTest {
         List<String> recipeIds = Arrays.asList("recipe1", "recipe2");
         Bookmark mark1 = new Bookmark("recipe1");
         Bookmark mark2 = new Bookmark("recipe2");
-
+        User user = new User(1L);
         List<Bookmark> bookmarks = Arrays.asList(mark1, mark2);
 
-        when(bookmarkRepository.findBookmarksByRecipeIds(recipeIds)).thenReturn(bookmarks);
+        when(bookmarkRepository.findBookmarksByRecipeIdsAndUserId(recipeIds, user)).thenReturn(bookmarks);
 
         //When
-        List<Bookmark> result = bookMarkService.getAllBookmarks(recipeIds);
+        List<Bookmark> result = bookMarkService.getAllBookmarks(recipeIds, user);
 
         //Then
         assertEquals(bookmarks, result);
