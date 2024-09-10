@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>인기 레시피</title>
-    <link rel="stylesheet" th:href="@{/css/Top_ui.css}">
     <link rel="stylesheet" th:href="@{/css/popular.css}">
 </head>
 <body>
     <header>
         <div class="header-container">
             <div class="logo" id="logo">
-                <a href="/main" class="no-underline">
+                <a href="/main" class="no-underline" style="text-decoration-line: none;">
                     <p>밥 묵자</p>
                 </a>
                 <div th:if="${session.user != null}">
@@ -45,102 +44,60 @@
         </div>
     </header>
 
-    <!-- <div class="popular">
-        <div class="pop_list">
-            <div class="title">
-                <h2>인기 레시피</h2>
-            </div>
-
-            <div class="week-month">
-                <button class="btn-select">이번주</button>
-                <ul class="list">
-                    <li><button type="button">이번주</button></li>
-                    <li><button type="button">이번달</button></li>
-                </ul>
-            </div>
-        </div>
-    </div> -->
-
-    <!-- <div class="all">
-        <div class="product_list">
-            <div class="recipe">
-                <img src="/images/food28.png" alt="감자명란볶음">
-                <div class="recipe-title">감자명란볶음</div>
-                <div class="ingredient-tags">
-                    <p class="ingredient-tag">감자</p>
-                    <p class="ingredient-tag">명란젓</p>
-                    <p class="ingredient-tag">마늘</p>
-                    <p class="ingredient-tag">참기름</p>
-                </div>
-            </div>
-            <div class="recipe">
-                <img src="/images/food26.png" alt="물회">
-                <div class="recipe-title">물회</div>
-                <div class="ingredient-tags">
-                    <p class="ingredient-tag">광어</p>
-                    <p class="ingredient-tag">전복</p>
-                    <p class="ingredient-tag">오징어</p>
-                    <p class="ingredient-tag">고추장</p>
-                </div>
-            </div>
-            <div class="recipe">
-                <img src="/images/food24.png" alt="매콤새콤 쫄면">
-                <div class="recipe-title">매콤새콤 쫄면</div>
-                <div class="ingredient-tags">
-                    <p class="ingredient-tag">계란</p>
-                    <p class="ingredient-tag">오이</p>
-                    <p class="ingredient-tag">쫄면</p>
-                    <p class="ingredient-tag">참깨</p>
-                </div>
-            </div>
-            <div class="recipe">
-                <img src="/images/food89.png" alt="양지수육전골">
-                <div class="recipe-title">양지수육전골</div>
-                <div class="ingredient-tags">
-                    <p class="ingredient-tag">소고기양지</p>
-                    <p class="ingredient-tag">팽이버섯</p>
-                    <p class="ingredient-tag">부추</p>
-                    <p class="ingredient-tag">대파</p>
-                    <p class="ingredient-tag">양파</p>
-                </div>
-            </div>
-            <div class="recipe">
-                <img src="/images/food86.png" alt="고깃집 된장찌개">
-                <div class="recipe-title">고깃집 된장찌개</div>
-                <div class="ingredient-tags">
-                    <p class="ingredient-tag">광어</p>
-                    <p class="ingredient-tag">전복</p>
-                    <p class="ingredient-tag">오징어</p>
-                </div>
-            </div>
-            <div class="recipe">
-                <img src="/images/food87.png" alt="허니포테이토 그라탕">
-                <div class="recipe-title">허니포테이토 그라탕</div>
-                <div class="ingredient-tags">
-                    <p class="ingredient-tag">감자</p>
-                    <p class="ingredient-tag">슈레드 모차렐라 치즈</p>
-                    <p class="ingredient-tag">버터</p>
-                    <p class="ingredient-tag">파마산치즈</p>
-                </div>
-            </div>
-            <div class="recipe">
-                <img src="/images/food88.png" alt="단호박설기">
-                <div class="recipe-title">단호박설기</div>
-                <div class="ingredient-tags">
-                    <p class="ingredient-tag">단호박</p>
-                    <p class="ingredient-tag">멥쌀가루</p>
-                    <p class="ingredient-tag">설탕</p>
-                    <p class="ingredient-tag">물</p>
-                </div>
-            </div>
-        </div>
-    </div> -->
-        
     <div class="banner">
-        <img src="images/banner4.png" alt="">
+        <!-- "열무 비빔국수" 레시피가 있으면 해당 레시피의 상세 페이지로 이동 -->
+        <a th:href="@{'/recipe/detail/' + ${yeolmuRecipeId}}">
+            <img src="images/noodle.png" alt="열무국수 배너">
+        </a>
     </div>
-        
 
+
+
+    <div class="best">
+        <p class="content-title">베스트 메뉴</p>
+        <p class="content-text">사용자들이 즐겨찾는 인기 레시피,</p>
+        <p class="content-text">지금 확인하세요!</p>
+    </div>
+
+    <div class="content">
+        <div class="recipe-list">
+            <div th:each="recipe : ${popularRecipes}">
+                <div class="recipe">
+                    <a th:href="@{'/recipe/detail/' + ${recipe.id}}" style="color: #142618; text-decoration: none;">
+                        <!-- 이미지 파일인 경우 -->
+                        <div th:if="${#strings.endsWith(recipe.mediaUrl, '.jpg') or #strings.endsWith(recipe.mediaUrl, '.jpeg') or #strings.endsWith(recipe.mediaUrl, '.png')}">
+                            <img th:src="${recipe.mediaUrl}" th:alt="${recipe.title}" />
+                        </div>
+
+                        <!-- 동영상 파일인 경우 -->
+                        <div th:if="${#strings.endsWith(recipe.mediaUrl, '.mp4') or #strings.endsWith(recipe.mediaUrl, '.webm')}">
+                            <video controls th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <h3 th:text="${recipe.title}"></h3>
+                        <div class="ingredient-tags">
+                            <p class="ingredient-tag" th:each="recipeIngredient : ${recipe.ingredients.keySet()}" th:text="${recipeIngredient}"></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 말하는감자 - 밥묵자 | 최고의 레시피로 여러분의 식탁을 채우는 공간</p>
+            <p>문의: contact@potato.com | 전화: 010-1234-5678</p>
+            <p>주소: 서울특별시 강남구 테헤란로 123, 말하는감자 빌딩 5층</p>
+        </div>
+        <div class="footer-links">
+            <a href="">회사 소개</a> |
+            <a href="">개인정보 처리방침</a> |
+            <a href="">이용약관</a>
+        </div>
+    </div>
 
     <script th:src="@{/js/popular.js}"></script>
     <script th:src="@{/js/Top_ui.js}"></script>

@@ -27,7 +27,19 @@ public class TodayController {
 
 
     @GetMapping("/Today")
-    public String Today_eat() {
+    public String Today_eat(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
+
+        if (user == null) {
+            return "redirect:/login";
+        }
 
         return "/Today_eat";
     }
@@ -35,7 +47,20 @@ public class TodayController {
     @PostMapping("/search")
     public String todayEatSearch(@RequestParam(value = "fridgeTags", required = false) String fridgeTags,
                                  @RequestParam(value = "excludeTags", required = false) String excludeTags,
-                                 HttpSession session) {
+                                 HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
+
+        if (user == null) {
+            return "redirect:/login";
+        }
+
         session.removeAttribute("fridgeItems");
         session.removeAttribute("excludedItems");
         session.removeAttribute("recipes");
@@ -104,14 +129,40 @@ public class TodayController {
         model.addAttribute("excludeItems", excludeItems);
         model.addAttribute("recipes", recipeDto);
         session.setAttribute("bookmarkedRecipe", recipeDto);
+
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
+
+        if (user == null) {
+            return "redirect:/login";
+        }
         return "/Today_eat_detail";
     }
 
 
     @GetMapping("/recipe/detail/{recipeId}")
-    public String recipeDetail(@PathVariable("recipeId") Optional<String> recipeId, HttpSession session) {
+    public String recipeDetail(@PathVariable("recipeId") Optional<String> recipeId, HttpSession session, Model model) {
         String id = recipeId.orElse("");
         User user = (User) session.getAttribute("user");
+
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
+
+        if (user == null) {
+            return "redirect:/login";
+        }
 
         Optional<MongoRecipe> recipeOptional = todayService.detailRecipe(id);
         Optional<Bookmark> bookmarkOptional = markService.statusMark(id, user.getUserId());
@@ -130,6 +181,19 @@ public class TodayController {
 
     @GetMapping("/Recipes_detail")
     public String recipeDetail(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
+
+        if (user == null) {
+            return "redirect:/login";
+        }
+
         MongoRecipe recipe = (MongoRecipe) session.getAttribute("recipe");
         Bookmark bookmark = (Bookmark) session.getAttribute("bookmark");
         List<RecipeDTO> recipeList = (List<RecipeDTO>) session.getAttribute("bookmarkedRecipe");

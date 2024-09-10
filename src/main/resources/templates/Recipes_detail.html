@@ -26,7 +26,7 @@
     </div>
     <hr class="divider">
     <div id="dropdown-content" class="dropdown-content">
-        <p id="user-email">bab@naver.com</p>
+        <p id="user-email" th:text="${email}"></p>
         <hr>
         <a href="#" class="edit-info">정보 수정</a>
         <div class="dropdown-buttons">
@@ -118,45 +118,18 @@
 </main>
 
 <!--footer-->
-<footer class="footer-content">
-
-    <div class="footer-recipe-section">
-        <div class="footer-recipe-header">
-            <h2>추천 레시피</h2>
-            <div class="footer-sort-options">
-                <span id="footer-sort-high" class="footer-sort-option active">별점 높은 순</span>
-                <span id="footer-sort-low" class="footer-sort-option">별점 낮은 순</span>
-            </div>
-        </div>
-
-        <div class="footer-recipe-list" th:if="${recipeList}">
-            <div class="footer-recipe-item" th:each="recipe : ${recipeList}">
-                <img th:if="${#strings.endsWith(recipe.mediaUrl, '.jpg') or #strings.endsWith(recipe.mediaUrl, '.jpeg') or #strings.endsWith(recipe.mediaUrl, '.png')}"
-                     th:src="${recipe.mediaUrl}" alt="레시피 이미지">
-                <video th:if="${#strings.endsWith(recipe.mediaUrl, '.mp4') or #strings.endsWith(recipe.mediaUrl, '.webm')}"
-                       th:src="${recipe.mediaUrl}" controls>
-                    Your browser does not support the video tag.
-                </video>
-                <div class="footer-recipe-details">
-                    <h3 th:text="${recipe.title}"></h3>
-                    <div class="footer-ingredient-tags">
-                        <p class="ingredient-tag" th:each="ingredient : ${recipe.ingredients.keySet()}" th:text="${ingredient}"></p>
-                    </div>
-                </div>
-                <div class="footer-recipe-meta">
-                    <div class="footer-bookmark">
-                        <img th:src="${recipe.isBookmarked ? '/images/bookmark_filled.png' : '/images/bookmark.png'}"
-                             alt="북마크 아이콘"/>
-                    </div>
-                    <!--                        <div class="footer-rating">-->
-                    <!--                            ★ <span th:text="${#numbers.formatDecimal(recipe.rating, 1, 2)}">9.99</span> / 10-->
-                    <!--                        </div>-->
-                </div>
-            </div>
-        </div>
+<div class="footer">
+    <div class="footer-content">
+        <p>&copy; 2024 말하는감자 - 밥묵자 | 최고의 레시피로 여러분의 식탁을 채우는 공간</p>
+        <p>문의: contact@potato.com | 전화: 010-1234-5678</p>
+        <p>주소: 서울특별시 강남구 테헤란로 123, 말하는감자 빌딩 5층</p>
     </div>
-</footer>
-
+    <div class="footer-links">
+        <a href="">회사 소개</a> |
+        <a href="">개인정보 처리방침</a> |
+        <a href="">이용약관</a>
+    </div>
+</div>
 <script th:src="@{/js/Top_ui.js}"></script>
 <script th:src="@{/js/recipes_detail.js}"></script>
 </body>
