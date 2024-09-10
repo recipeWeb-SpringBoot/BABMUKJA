@@ -22,7 +22,7 @@ public class Bookmark {
     //mongo
     @Getter
     @Setter
-    @Column(name = "recipeId", unique = false)
+    @Column(name = "recipeId", unique = true)
     private String recipeId;
 
     @Getter
