@@ -58,21 +58,36 @@
         </div>
         <div class="icon-container">
             <div class="icon-left">
-                <div class="rating">
-                    <span>★ 9.99 / 10</span>
+                <!-- 쉬워요 / 어려워요 난이도 통계 표시 -->
+                <div class="difficulty-bar easy">
+                    <label>
+                        <input type="radio" name="difficulty" value="easy" th:checked="${userDifficulty == 'easy'}" />
+                        <img src="/images/happy-icon.png" alt="쉬워요">
+                        쉬워요
+                        <span class="easy-percentage" id="easy-percentage" th:text="${easyPercentage != null ? easyPercentage : 0.0}">0.0</span>%
+                        (<span id="easy-count" th:text="${easyCount != null ? easyCount : 0}">0</span>명)
+                    </label>
+                    <div class="progress-bar">
+                        <div class="progress" id="easy-progress" th:style="'width: ' + (${easyPercentage != null ? easyPercentage : 0.0}) + '%'"></div>
+                    </div>
+                </div>
+
+                <div class="difficulty-bar hard">
+                    <label>
+                        <input type="radio" name="difficulty" value="hard" th:checked="${userDifficulty == 'hard'}" />
+                        <img src="/images/sad-icon.png" alt="어려워요">
+                        어려워요
+                        <span class="hard-percentage" id="hard-percentage" th:text="${hardPercentage != null ? hardPercentage : 0.0}">0.0</span>%
+                        (<span id="hard-count" th:text="${hardCount != null ? hardCount : 0}">0</span>명)
+                    </label>
+                    <div class="progress-bar">
+                        <div class="progress" id="hard-progress" th:style="'width: ' + (${hardPercentage != null ? hardPercentage : 0.0}) + '%'"></div>
+                    </div>
                 </div>
             </div>
-            <div class="icon-right">
-                <div class="share">
-                    <img th:src="@{/images/Share2.png}" alt="공유 아이콘">
-                </div>
-                <div class="bookmark">
-                    <img id="bookmark-icon" th:src="${bookmark.isBookmark == 1 ? '/images/bookmark_filled.png' : '/images/bookmark.png'}"
-                         alt="북마크 아이콘" onclick="toggleBookmark()">
-                    <input type="hidden" th:value="${bookmark.isBookmark}" id="isBook"/>
-                    <input type="hidden" th:value="${recipe.id}" id="recipeId"/>
-                </div>
-            </div>
+
+            <button id="openModalBtn">어때요?</button>
+
         </div>
 
         <div class="details">
@@ -129,7 +144,25 @@
         <a href="">이용약관</a>
     </div>
 </div>
+
+<div id="Modal" class="modal">
+
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>어때요?</h2>
+        <div class="slider-container">
+            <p>쉬워요</p>
+            <input type="range" min="-5" max="5" value="0" id="difficultySlider">
+            <p>어려워요</p>
+        </div>
+        <p id="sliderValue">현재 값 : </p>
+        <button id="submitBtn">감사합니다.</button>
+    </div>
+</div>
+
 <script th:src="@{/js/Top_ui.js}"></script>
 <script th:src="@{/js/recipes_detail.js}"></script>
+<script th:src="@{/js/rating.js}"></script>
+
 </body>
 </html>

@@ -100,6 +100,18 @@ public class TodayController {
         List<MongoRecipe> recipes = (List<MongoRecipe>) session.getAttribute("recipes");
         User user = (User) session.getAttribute("user");
 
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else{
+            System.out.println("유저 로딩 실패");
+            return "redirect:/login";
+        }
+
+        if (recipes==null) {
+            return "redirect:/main";
+        }
+
         // MongoDB에서 레시피 ID 목록 추출
         List<String> recipeIds = recipes.stream()
                 .map(MongoRecipe::getId)
@@ -130,16 +142,7 @@ public class TodayController {
         model.addAttribute("recipes", recipeDto);
         session.setAttribute("bookmarkedRecipe", recipeDto);
 
-        if (user != null) {
-            model.addAttribute("email", user.getUserEmail());
-            System.out.println("userEmail: " + user.getUserEmail());
-        } else {
-            System.out.println("유저 로딩 실패");
-        }
 
-        if (user == null) {
-            return "redirect:/login";
-        }
         return "/Today_eat_detail";
     }
 
