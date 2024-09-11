@@ -338,3 +338,149 @@
 .footer a:hover {
     text-decoration: underline;
 }
+
+.difficulty-percentage {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.difficulty-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.difficulty-bar label {
+    display: flex;
+    align-items: center;
+    font-family: 'GowunDodum-Regular', serif;
+    font-size: 16px;
+    cursor: pointer;
+    width: 45%; /* 각 난이도 바가 반 정도만 차지 */
+}
+
+.difficulty-bar img {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.difficulty-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.label {
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.slider-bar {
+    position: relative;
+    width: 300px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+}
+
+.slider-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: left 0.5s ease;
+}
+
+.easy-label {
+    color: green;
+}
+
+.hard-label {
+    color: red;
+}
+
+
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    text-align: center;
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.slider-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #e0e0e0;
+    border-radius: 50px;
+}
+
+.slider-container p {
+    margin: 0;
+}
+
+.slider-container input[type="range"] {
+    width: 70%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 15px;
+    background: #ddd;
+    border-radius: 5px;
+}
+
+.slider-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    background: black;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#sliderValue {
+    font-size: 18px;
+    margin-top: 20px;
+}

@@ -1,6 +1,7 @@
 package com.example.bab_recipes.Domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.Setter;
 
 @Table(name = "Rating")
@@ -8,6 +9,7 @@ import lombok.Setter;
 public class Rating {
 
     @Id
+    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ratingId;
 
@@ -16,21 +18,23 @@ public class Rating {
     @JoinColumn(name = "userId")
     private User user;
 
+    @Getter
     @Setter
-    @Column(nullable = false)
-    private Double rating;
+    @Column(name = "recipeId", nullable = false)
+    private String recipeId;
 
-    public Long getRatingId() {
-        return ratingId;
+    @Getter
+    @Setter
+    @Column(name = "difficulty", nullable = false)
+    private int difficulty; // {easy} or {hard}
+
+    public Rating() {
     }
 
-
-    public User getUser() {
-        return user;
-    }
-
-    public Double getRating() {
-        return rating;
+    public Rating(User user, String recipeId, int difficulty) {
+        this.user = user;
+        this.recipeId = recipeId;
+        this.difficulty = difficulty;
     }
 
 
