@@ -367,32 +367,45 @@
     margin-right: 10px;
 }
 
-.progress-bar {
-    flex-grow: 1;
-    background-color: #eee;
-    border-radius: 10px;
-    overflow: hidden;
+.difficulty-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.label {
+    margin: 0 10px;
+    font-size: 16px;
+}
+
+.slider-bar {
+    position: relative;
+    width: 300px;
     height: 20px;
-    margin-left: 10px;
+    background-color: #ccc;
+    border-radius: 20px;
 }
 
-.progress {
-    height: 100%;
-    background-color: #6495ed;
-    transition: width 0.4s ease;
+.slider-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: left 0.5s ease;
 }
 
-.easy .progress {
-    background-color: #6495ed; /* 파란색 (쉬워요) */
+.easy-label {
+    color: green;
 }
 
-.hard .progress {
-    background-color: #ff6347; /* 빨간색 (어려워요) */
-}
-
-.easy-percentage, .hard-percentage {
-    margin-left: 5px;
-    font-weight: bold;
+.hard-label {
+    color: red;
 }
 
 

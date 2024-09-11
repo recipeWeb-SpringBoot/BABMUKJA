@@ -26,12 +26,12 @@ public class Rating {
     @Getter
     @Setter
     @Column(name = "difficulty", nullable = false)
-    private String difficulty; // {easy} or {hard}
+    private int difficulty; // {easy} or {hard}
 
     public Rating() {
     }
 
-    public Rating(User user, String recipeId, String difficulty) {
+    public Rating(User user, String recipeId, int difficulty) {
         this.user = user;
         this.recipeId = recipeId;
         this.difficulty = difficulty;

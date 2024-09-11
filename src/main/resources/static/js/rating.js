@@ -37,10 +37,33 @@ Button.onclick = (event) => {
         .then(response => response.json())
         .then(data => {
             console.log("Success: ", data);
-            alert('전송');
             modal.style.display = "none";
         })
         .catch(error => {
             console.error("Error: ", error);
         });
+}
+
+window.onload = () =>{
+    const easyElement = document.querySelector("#easyPercentage");
+    const hardElement = document.querySelector("#hardPercentage");
+
+    const easy = parseFloat(easyElement.value);
+    const hard = parseFloat(hardElement.value);
+
+    updateSlider(easy, hard);
+}
+
+function updateSlider(easy, hard) {
+    const sliderCircle = document.querySelector('#slider-circle');
+    let position = 50; // 초기 위치
+
+    if (hard > easy) {
+        position = 50 + (hard - easy);
+    } else if (easy > hard) {
+        position = 50 - (easy - hard);
+    }
+
+    // 슬라이더 위치 업데이트
+    sliderCircle.style.left = `${position}%`;
 }

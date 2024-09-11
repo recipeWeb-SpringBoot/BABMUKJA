@@ -5,6 +5,7 @@ import com.example.bab_recipes.Domain.Bookmark;
 import com.example.bab_recipes.Domain.MongoRecipe;
 import com.example.bab_recipes.Domain.User;
 import com.example.bab_recipes.Service.BookMarkService;
+import com.example.bab_recipes.Service.RatingService;
 import com.example.bab_recipes.Service.TodayService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,8 @@ public class TodayController {
     @Autowired
     private BookMarkService markService;
 
-
+    @Autowired
+    private RatingService ratingService;
 
     @GetMapping("/Today")
     public String Today_eat(HttpSession session, Model model) {
@@ -102,6 +104,8 @@ public class TodayController {
 
         if (user != null) {
             model.addAttribute("email", user.getUserEmail());
+            session.removeAttribute("recipe");
+            session.removeAttribute("bookmark");
             System.out.println("userEmail: " + user.getUserEmail());
         } else{
             System.out.println("유저 로딩 실패");
@@ -195,13 +199,22 @@ public class TodayController {
 
         MongoRecipe recipe = (MongoRecipe) session.getAttribute("recipe");
         Bookmark bookmark = (Bookmark) session.getAttribute("bookmark");
-        List<RecipeDTO> recipeList = (List<RecipeDTO>) session.getAttribute("bookmarkedRecipe");
+
+
         if (recipe != null) {
+            Map<String, Double> ratings = ratingService.getRatings(recipe.getId());
+            //현재 데이터
+            double easy = ratings.get("easy"); //4
+            double hard = ratings.get("hard"); //0
+            double count = ratings.get("count"); //1
+
+            double easyPercent = easy * 100;
+            double hardPercent = hard * 100;
+
             model.addAttribute("recipe", recipe);
             model.addAttribute("bookmark", bookmark);
-            model.addAttribute("recipeList", recipeList);
-            session.removeAttribute("recipe");
-            session.removeAttribute("bookmark");
+            model.addAttribute("hard", hardPercent);
+            model.addAttribute("easy", easyPercent);
 
             return "Recipes_detail";
         }
