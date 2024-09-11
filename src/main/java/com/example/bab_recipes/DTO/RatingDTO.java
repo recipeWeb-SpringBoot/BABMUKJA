@@ -1,6 +1,7 @@
 package com.example.bab_recipes.DTO;
 
 import com.example.bab_recipes.Domain.MongoRecipe;
+import com.example.bab_recipes.Domain.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,15 +9,15 @@ import lombok.Setter;
 @Setter
 public class RatingDTO {
 
-    private String recipeId;
+    private User user;
     private String difficulty;
-    private MongoRecipe mongoRecipe;
+    private String RecipeId;
 
     public RatingDTO(){}
 
-    public RatingDTO(String recipeId, String difficulty, MongoRecipe mongoRecipe) {
-        this.recipeId = recipeId;
+    public RatingDTO(User user, String difficulty, String RecipeId) {
+        this.user = user;
         this.difficulty = difficulty;
-        this.mongoRecipe = mongoRecipe;
+        this.RecipeId = RecipeId;
     }
 }
