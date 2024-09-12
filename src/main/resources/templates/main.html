@@ -83,45 +83,48 @@
 
 <div class="nav-bar">
     <div class="nav">
-        <a class="nav-item" th:href="@{/recipes/한식}" id="default-category">한식</a> |
-        <a class="nav-item" th:href="@{/recipes/양식}">양식</a> |
-        <a class="nav-item" th:href="@{/recipes/중식}">중식</a> |
-        <a class="nav-item" th:href="@{/recipes/일식}">일식</a> |
-        <a class="nav-item" th:href="@{/recipes/분식}">분식</a> |
-        <a class="nav-item" th:href="@{/recipes/퓨전}">퓨전</a> |
-        <a class="nav-item" th:href="@{/recipes/밑반찬}">밑반찬</a> |
-        <!--        <a class="nav-item" th:href="@{/recipes/야식}">야식</a> |-->
-        <a class="nav-item" th:href="@{/recipes/다이어트}">다이어트</a> |
-        <a class="nav-item" th:href="@{/recipes/베이킹}">베이킹</a> |
-        <a class="nav-item" th:href="@{/recipes/채식}">채식</a>
+        <a class="nav-item" href="#" onclick="loadCategory('한식')" id="default-category">한식</a> |
+        <a class="nav-item" href="#" onclick="loadCategory('양식')">양식</a> |
+        <a class="nav-item" href="#" onclick="loadCategory('중식')">중식</a> |
+        <a class="nav-item" href="#" onclick="loadCategory('일식')">일식</a> |
+        <a class="nav-item" href="#" onclick="loadCategory('분식')">분식</a> |
+        <a class="nav-item" href="#" onclick="loadCategory('퓨전')">퓨전</a> |
+        <a class="nav-item" href="#" onclick="loadCategory('밑반찬')">밑반찬</a> |
+        <a class="nav-item" href="#" onclick="loadCategory('다이어트')">다이어트</a> |
+        <a class="nav-item" href="#" onclick="loadCategory('베이킹')">베이킹</a> |
+        <a class="nav-item" href="#" onclick="loadCategory('채식')">채식</a>
     </div>
 </div>
 
-<!-- 선택된 카테고리에 해당하는 레시피 리스트 -->
 <div class="content">
-    <div class="recipe-list">
-        <div class="recipe" th:each="category : ${categories}">
-            <a th:href="@{'/recipe/detail/' + ${category.id}}" style="color: #142618; text-decoration: none;">
-                <!-- 이미지 파일인 경우 -->
-                <div th:if="${#strings.endsWith(category.mediaUrl, '.jpg') or #strings.endsWith(category.mediaUrl, '.jpeg') or #strings.endsWith(category.mediaUrl, '.png')}">
-                    <img th:src="${category.mediaUrl}" th:alt="${category.title}" />
-                </div>
+    <div id="recipe-list">
+        <div th:each="recipe : ${recipes}">
+            <div class="recipe">
+                <a th:href="@{'/recipe/detail/' + ${recipe.id}}" style="color: #142618; text-decoration: none;">
+                    <!-- 이미지 파일인 경우 -->
+                    <div th:if="${#strings.endsWith(recipe.mediaUrl, '.jpg') or #strings.endsWith(recipe.mediaUrl, '.jpeg') or #strings.endsWith(recipe.mediaUrl, '.png')}">
+                        <img th:src="${recipe.mediaUrl}" th:alt="${recipe.title}" />
+                    </div>
 
-                <!-- 동영상 파일인 경우 -->
-                <div th:if="${#strings.endsWith(category.mediaUrl, '.mp4') or #strings.endsWith(category.mediaUrl, '.webm')}">
-                    <video controls th:src="${category.mediaUrl}" th:alt="${category.title}">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
+                    <!-- 동영상 파일인 경우 -->
+                    <div th:if="${#strings.endsWith(recipe.mediaUrl, '.mp4') or #strings.endsWith(recipe.mediaUrl, '.webm')}">
+                        <video controls th:src="${recipe.mediaUrl}" th:alt="${recipe.title}">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
 
-                <h3 th:text="${category.title}"></h3>
-                <!-- 각 레시피의 재료를 출력 -->
-                <div class="ingredient-tags">
-                    <p class="ingredient-tag" th:each="ingredient : ${category.ingredients.keySet()}" th:text="${ingredient}"></p>
-                </div>
-            </a>
+                    <h3 th:text="${recipe.title}"></h3>
+                    <div class="ingredient-tags">
+                        <p class="ingredient-tag" th:each="ingredient : ${recipe.ingredients.keySet()}" th:text="${ingredient}"></p>
+                    </div>
+                </a>
+            </div>
         </div>
     </div>
+</div>
+
+<div id="load-more" onclick="loadMore()">
+    <img th:src="@{/images/plus.png}" alt="plus 버튼">
 </div>
 
 <div class="footer">

@@ -45,7 +45,7 @@ public class MainController {
     }
 
     @GetMapping("/mainSearch")
-    public String mainSearch(@RequestParam(value = "query", required = false) String query, Model model) {
+    public String mainSearch(@RequestParam(value = "query", required = false) String query, HttpSession session, Model model) {
         if (query == null || query.trim().isEmpty()) {
             model.addAttribute("recipes", Collections.emptyList());
             return "/main";
@@ -65,35 +65,44 @@ public class MainController {
 
         model.addAttribute("recipes", recipeDTO);
 
-        return "/main";
-    }
-
-    @GetMapping("/recipe/{recipeId}")
-    public String recipeDetail(@PathVariable("recipeId") String recipeId, Model model, HttpSession session) {
-        Optional<MongoRecipe> recipeOptional = mainRepository.findById(recipeId);
-        if (recipeOptional.isPresent()) {
-            MongoRecipe recipe = recipeOptional.get();
-            RecipeDTO recipeDTO = new RecipeDTO(
-                    recipe.getId(),
-                    recipe.getTitle(),
-                    recipe.getIngredients(),
-                    recipe.getMediaUrl(),
-                    false
-            );
-            model.addAttribute("recipe", recipeDTO);
-            return "Recipes_detail";
-        }
-
-        // userEmail
         User user = (User) session.getAttribute("user");
 
         if (user != null) {
-            model.addAttribute("email", user.getUserEmail());
             System.out.println("userEmail: " + user.getUserEmail());
+            model.addAttribute("email", user.getUserEmail());
         } else {
-            System.out.println("유저 로딩 실패");
+            System.out.println("로그인 실패");
         }
 
-        return "redirect:/main";
+        return "/main";
     }
+
+//    @GetMapping("/recipe/{recipeId}")
+//    public String recipeDetail(@PathVariable("recipeId") String recipeId, Model model, HttpSession session) {
+//        Optional<MongoRecipe> recipeOptional = mainRepository.findById(recipeId);
+//        if (recipeOptional.isPresent()) {
+//            MongoRecipe recipe = recipeOptional.get();
+//            RecipeDTO recipeDTO = new RecipeDTO(
+//                    recipe.getId(),
+//                    recipe.getTitle(),
+//                    recipe.getIngredients(),
+//                    recipe.getMediaUrl(),
+//                    false
+//            );
+//            model.addAttribute("recipe", recipeDTO);
+//            return "Recipes_detail";
+//        }
+//
+//        // user
+//        User user = (User) session.getAttribute("user");
+//
+//        if (user != null) {
+//            model.addAttribute("email", user.getUserEmail());
+//            System.out.println("userEmail: " + user.getUserEmail());
+//        } else {
+//            System.out.println("유저 로딩 실패");
+//        }
+//
+//        return "redirect:/main";
+//    }
 }

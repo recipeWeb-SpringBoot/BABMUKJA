@@ -1,3 +1,20 @@
+.login_btn {
+    font-weight: 600;
+    font-size: 1.1rem;
+    position: absolute;
+    width: 100px;
+    height: 70px;
+    right: 71px;
+    top: 25px;
+    object-fit: cover;
+    cursor: pointer;
+    text-decoration-line: none;
+    color: #142618;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(4, 300px); /* 4열 그리드, 각 열의 너비를 300px로 고정 */
