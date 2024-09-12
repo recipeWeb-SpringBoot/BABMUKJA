@@ -8,17 +8,13 @@ import com.example.bab_recipes.Service.RatingService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @RestController
 public class RatingController {
-
 
     @Autowired
     private RatingService ratingService;
@@ -29,15 +25,19 @@ public class RatingController {
         MongoRecipe recipe = (MongoRecipe) session.getAttribute("recipe");
         User user = (User) session.getAttribute("user");
 
-        System.out.println("레시피 : " + recipe.getId());
-        System.out.println("유저 : " + user.getUserId());
-        System.out.println("난이도는 : " + difficulty);
-        Rating rating = new Rating(user, recipe.getId(),difficulty);
+        // Rating 객체 생성 및 저장
+        Rating rating = new Rating(user, recipe.getId(), difficulty);
+        ratingService.addOrUpdateRating(rating);
 
         Map<String, Object> response = new HashMap<>();
-        ratingService.addRating(rating);
         response.put("success", true);
         return ResponseEntity.ok(response);
     }
 
+    @GetMapping("/getDifficulty")
+    public ResponseEntity<Map<String, Double>> getDifficulty(@RequestParam("recipeId") String recipeId) {
+        Map<String, Double> ratings = ratingService.getRatings(recipeId);
+        return ResponseEntity.ok(ratings);
+    }
 }
+

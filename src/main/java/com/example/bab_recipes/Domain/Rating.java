@@ -37,5 +37,7 @@ public class Rating {
         this.difficulty = difficulty;
     }
 
-
+    public User getUser() {
+        return this.user;
+    }
 }
