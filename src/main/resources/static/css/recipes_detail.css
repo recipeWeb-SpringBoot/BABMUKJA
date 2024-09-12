@@ -40,19 +40,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
-    padding: 0 10px;
+    padding: 10px ;
+    margin-top: 20px;
 }
 
 .icon-left {
     display: flex;
     align-items: center;
+    gap: 20px;
 }
 
 .icon-right {
     display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
     align-items: center;
-    gap: 10px;
+    gap: 5px; /* 공유 아이콘과 북마크 아이콘 사이 간격 */
+    width: 100%;
 }
 
 .rating {
@@ -349,7 +352,6 @@
 .difficulty-bar {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 .difficulty-bar label {
@@ -358,47 +360,48 @@
     font-family: 'GowunDodum-Regular', serif;
     font-size: 16px;
     cursor: pointer;
-    width: 45%; /* 각 난이도 바가 반 정도만 차지 */
+    margin-right: 20px;  /* 아이콘과 퍼센티지 사이 간격 추가 */
 }
 
 .difficulty-bar img {
     width: 25px;
     height: 25px;
-    margin-right: 10px;
+
 }
 
 .difficulty-slider {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin-top: 20px;
+    gap: 5px;  /* 쉬워요/어려워요 라벨과 슬라이더 바 사이에 간격 */
 }
 
 .label {
-    margin: 0 10px;
+    margin: 0 10px 0 0;
     font-size: 16px;
+    white-space: nowrap;
 }
 
+/* 슬라이더 막대의 기본 회색 스타일 */
 .slider-bar {
     position: relative;
     width: 300px;
-    height: 20px;
-    background-color: #ccc;
-    border-radius: 20px;
+    height: 15px;
+    background: #D9D9D9; /* 기본 회색 */
+    border-radius: 10px;
+    transition: background 0.3s ease;
 }
 
-.slider-circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: black;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: left 0.5s ease;
-}
+/*!* 슬라이더 동그라미 스타일 *!*/
+/*.slider-circle {*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    width: 20px;*/
+/*    height: 20px;*/
+/*    background-color: #000;*/
+/*    border-radius: 50%;*/
+/*    transition: left 0.3s ease;*/
+/*}*/
 
 .easy-label {
     color: green;
@@ -420,6 +423,7 @@
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
 }
 
 
@@ -483,4 +487,77 @@
 #sliderValue {
     font-size: 18px;
     margin-top: 20px;
+}
+
+/* 반응형: 창 크기가 600px 이하일 때 레이아웃 수정 */
+@media (max-width: 600px) {
+    /* .icon-container를 세로로 배치 */
+    .icon-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    /* 첫 번째 줄: 공유 및 북마크 아이콘을 가로로 배치 */
+    .icon-right {
+        order: -1;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* 두 번째 줄: 쉬워요/어려워요 퍼센티지와 난이도 평가하기 버튼을 가로로 나란히 배치 */
+    .difficulty-bar {
+        display: flex; /* 가로 정렬 */
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    /* 세 번째 줄인 슬라이더 바는 숨기기 */
+    .difficulty-slider {
+        display: none; /* 창이 줄어들 때 슬라이더 바 숨기기 */
+    }
+}
+
+
+
+/* '난이도 평가하기' 버튼 스타일 */
+#openModalBtn {
+    background-color: white;
+    font-family: 'GowunDodum-Regular', sans-serif;
+    border: 2px solid gray; /* 초록색 선 */
+    color: black; /* 검정 글씨 */
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+    margin : 0 20px;
+}
+
+#openModalBtn:hover {
+    background-color: #f0f0f0; /* 마우스 호버 시 살짝 회색 배경 */
+    border-color: #385F41;
+}
+
+/* Modal 안의 '감사합니다.' 버튼 스타일 */
+#submitBtn {
+    background-color: white;
+    border: 2px solid green; /* 초록색 선 */
+    color: black; /* 검정 글씨 */
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#submitBtn:hover {
+    background-color: #f0f0f0; /* 마우스 호버 시 살짝 회색 배경 */
 }

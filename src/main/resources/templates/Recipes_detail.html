@@ -61,29 +61,27 @@
                 <!-- 쉬워요 / 어려워요 난이도 통계 표시 -->
                 <div class="difficulty-bar">
                     <label>
-                        <img th:src="@{/images/happy-icon.png}" alt="쉬워요">
-                        <span class="easy-percentage" id="easy-percentage" th:text="${easy != null ? easy : 0.0}"></span>%
+                        <span class="label easy-label">쉬워요</span>
+                        <span class="easy-percentage">0%</span> <!-- 퍼센티지가 표시될 곳 -->
                         <input type="hidden" th:value="${easy}" id="easyPercentage"/>
                     </label>
                     <label>
-                        <img th:src="@{/images/sad-icon.png}" alt="어려워요">
-                        <span class="hard-percentage" id="hard-percentage" th:text="${hard != null ? hard : 0.0}"></span>%
+                        <span class="label hard-label">어려워요</span>
+                        <span class="hard-percentage">0%</span>  <!-- 퍼센티지가 표시될 곳 -->
                         <input type="hidden" th:value="${hard}" id="hardPercentage"/>
                     </label>
+                    <button id="openModalBtn">난이도 평가하기</button>
 
                     <div class="difficulty-slider">
-                        <span class="label easy-label">쉬워요</span>
+                        <img th:src="@{/images/easy-icon.png}" alt="쉬워요">
                         <div class="slider-bar">
                             <div class="slider-circle" id="slider-circle"></div>
                         </div>
-                        <span class="label hard-label">어려워요</span>
+                        <img th:src="@{/images/hard-icon.png}" alt="어려워요">
                     </div>
 
                 </div>
             </div>
-
-            <button id="openModalBtn">어때요?</button>
-
 
             <div class="icon-right">
                 <div class="share">
@@ -158,14 +156,14 @@
 
     <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>어때요?</h2>
+        <h2>난이도 평가하기</h2>
         <div class="slider-container">
             <p>쉬워요</p>
-            <input type="range" min="-10" max="10" value="0" id="difficultySlider">
+            <input type="range" min="0" max="10" value="5" id="difficultySlider">
             <p>어려워요</p>
         </div>
-        <p id="sliderValue">현재 값 : </p>
-        <button id="submitBtn">감사합니다.</button>
+        <p id="sliderValue">현재 값 : 5 </p>
+        <button id="submitBtn">감사합니다!</button>
     </div>
 </div>
 
