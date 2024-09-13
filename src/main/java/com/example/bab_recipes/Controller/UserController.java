@@ -53,4 +53,18 @@ public class UserController {
         return "main";
     }
 
+
+    static boolean checkUser(HttpSession session, Model model) {
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("email", user.getUserEmail());
+            System.out.println("userEmail: " + user.getUserEmail());
+        } else {
+            System.out.println("유저 로딩 실패");
+        }
+
+        return user == null;
+    }
+
 }

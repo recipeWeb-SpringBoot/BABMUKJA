@@ -106,20 +106,9 @@ public class BookmarkController {
 
 
     @GetMapping("/bookmark")
-    public String bookmark(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
-
-        if (user != null) {
-            model.addAttribute("email", user.getUserEmail());
-            System.out.println("userEmail: " + user.getUserEmail());
-        } else {
-            System.out.println("유저 로딩 실패");
-        }
-
-        if (user == null) {
-            return "redirect:/login";
-        }
-
+    public String bookmark(HttpSession session, Model model,
+                           @SessionAttribute("user") User user) {
+        if (UserController.checkUser(session, model)) return "redirect:/login";
         try {
             List<MongoRecipe> userBookmarkedRecipes = bookMarkService.searchAllRecipeForUserBookmark(user.getUserId());
 
