@@ -5,27 +5,22 @@ import lombok.Setter;
 
 import java.util.Map;
 
+@Setter
+@Getter
 public class RecipeDTO {
 
-    @Getter
-    @Setter
     private String id;
 
-    @Getter
-    @Setter
     private String title;
 
-    @Getter
-    @Setter
     private Map<String, String> ingredients;
 
-    @Getter
-    @Setter
     private String mediaUrl;
 
-    @Getter
-    @Setter
     private boolean isBookmarked;
+
+    public RecipeDTO() {
+    }
 
     public RecipeDTO(String id, String title, Map<String, String> ingredients, String mediaUrl, boolean isBookmarked) {
         this.id = id;
