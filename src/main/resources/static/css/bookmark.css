@@ -123,6 +123,7 @@ main {
 
 .recipe-details {
     margin-top: 10px;
+    display: flex;
 }
 
 .recipe-details p {
@@ -131,29 +132,13 @@ main {
     font-weight: bolder;
 }
 
-.recipe-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 90%;
-    margin-top: 10px;
-}
-
-.recipe-meta p {
-    margin: 0;
-    font-weight: bold;
-}
 
 .bookmark img {
     width: 25px;
     height: auto;
     cursor: pointer;
+    margin-left: 3px;
 }
-
-.rating {
-    font-weight: bold;
-}
-
 /* footer*/
 .footer {
     background-color: #f2f2f2;

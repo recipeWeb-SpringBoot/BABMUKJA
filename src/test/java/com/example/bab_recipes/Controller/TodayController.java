@@ -39,7 +39,7 @@ class TodayController {
 
         // 실제 데이터로 세션 설정
         fridgeItems = Arrays.asList("감자", "양파");
-        List<SearchRecipesDTO> recipes = todayService.searchOne(fridgeItems.toArray(new String[0]));
+        List<MongoRecipe> recipes = todayService.searchOne(fridgeItems.toArray(new String[0]));
         session.setAttribute("recipes", recipes);
         session.setAttribute("fridgeItems", fridgeItems);
 
