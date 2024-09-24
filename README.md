@@ -9,7 +9,7 @@
 ## 👩‍👧‍👧팀원 및 역할 분담
 |김기석|김서현|이유진|
 |:---:|:---:|:---:|
-|<img src="https://github.com/ArtifinityTeam/Artifinity-PhotoBoard-SpringBoot/assets/149933307/a0100975-a124-4757-bb15-a6a65ac7acde"  width="250" height="250">|<img src="https://github.com/ArtifinityTeam/Artifinity-PhotoBoard-SpringBoot/assets/127668637/08611bb2-6c65-48cd-aede-a20a01b0ca11"  width="250" height="250">|<img src="https://github.com/ArtifinityTeam/Artifinity-PhotoBoard-SpringBoot/assets/149933307/623f65bc-f7e2-472b-bfa7-3e1060243372"  width="250" height="250">|
+|<img src="https://github.com/user-attachments/assets/f4b7bd91-9d11-495c-9d50-923ebc31ea5e"  width="250" height="250">|<img src="https://github.com/ArtifinityTeam/Artifinity-PhotoBoard-SpringBoot/assets/127668637/08611bb2-6c65-48cd-aede-a20a01b0ca11"  width="250" height="250">|<img src="https://github.com/ArtifinityTeam/Artifinity-PhotoBoard-SpringBoot/assets/149933307/623f65bc-f7e2-472b-bfa7-3e1060243372"  width="250" height="250">|
 |[@chundae](https://github.com/chundae)|[@kshhyun](https://github.com/kshhyun)|[@hbyjna](https://github.com/hbyjna)|
 
 <br/><br/>
